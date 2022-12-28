@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	"github.com/dave136/twitt/db"
+	"github.com/dave136/twitt/handlers"
+)
 
 func main() {
-	fmt.Println("Hello world!")
+	if db.CheckConnection() == 0 {
+		log.Fatal("Cannot connect to database")
+		return
+	}
+
+	handlers.Handlers()
 }

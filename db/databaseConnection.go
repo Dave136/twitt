@@ -23,6 +23,8 @@ func connection() *mongo.Client {
 
 	mongoUri := os.Getenv("MONGO_URI")
 
+	log.Println(mongoUri)
+
 	clientOptions = options.Client().ApplyURI(mongoUri)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
