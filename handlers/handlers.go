@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/dave136/twitt/middlewares"
+	"github.com/dave136/twitt/routers"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
@@ -12,6 +14,9 @@ import (
 func Handlers() {
 	router := mux.NewRouter()
 	PORT := os.Getenv("PORT")
+
+	router.HandleFunc("/register", middlewares.CheckDatabase(routers.Register))
+	router.HandleFunc("/login", middlewares.CheckDatabase(routers.Login))
 
 	if PORT == "" {
 		PORT = "1173"
