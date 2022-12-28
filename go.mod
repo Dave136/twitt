@@ -1,4 +1,4 @@
-module dave136/twitt
+module github.com/dave136/twitt
 
 go 1.19
 
