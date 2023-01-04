@@ -15,8 +15,9 @@ func Handlers() {
 	router := mux.NewRouter()
 	PORT := os.Getenv("PORT")
 
-	router.HandleFunc("/register", middlewares.CheckDatabase(routers.Register))
-	router.HandleFunc("/login", middlewares.CheckDatabase(routers.Login))
+	router.HandleFunc("/register", middlewares.CheckDatabase(routers.Register)).Methods("POST")
+	router.HandleFunc("/login", middlewares.CheckDatabase(routers.Login)).Methods("POST")
+	router.HandleFunc("/profile", middlewares.CheckDatabase(middlewares.JwtValidate(routers.Profile))).Methods("GET")
 
 	if PORT == "" {
 		PORT = "1173"
