@@ -18,6 +18,7 @@ func Handlers() {
 	router.HandleFunc("/register", middlewares.CheckDatabase(routers.Register)).Methods("POST")
 	router.HandleFunc("/login", middlewares.CheckDatabase(routers.Login)).Methods("POST")
 	router.HandleFunc("/profile", middlewares.CheckDatabase(middlewares.JwtValidate(routers.Profile))).Methods("GET")
+	router.HandleFunc("/profile", middlewares.CheckDatabase(middlewares.JwtValidate(routers.UpdateProfile))).Methods("PUT")
 
 	if PORT == "" {
 		PORT = "1173"
