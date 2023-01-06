@@ -31,6 +31,11 @@ func Handlers() {
 	router.HandleFunc("/banner", middlewares.CheckDatabase(middlewares.JwtValidate(routers.UploadBanner))).Methods("POST")
 	router.HandleFunc("/banner", middlewares.CheckDatabase(routers.GetBanner)).Methods("GET")
 
+	// Relation
+	router.HandleFunc("/relation", middlewares.CheckDatabase(middlewares.JwtValidate(routers.GetRelation))).Methods("GET")
+	router.HandleFunc("/relation", middlewares.CheckDatabase(middlewares.JwtValidate(routers.Relation))).Methods("POST")
+	router.HandleFunc("/relation", middlewares.CheckDatabase(middlewares.JwtValidate(routers.DeleteRelation))).Methods("DELETE")
+
 	if PORT == "" {
 		PORT = "1173"
 	}
