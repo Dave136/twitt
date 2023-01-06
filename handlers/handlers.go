@@ -25,6 +25,12 @@ func Handlers() {
 	router.HandleFunc("/tweet", middlewares.CheckDatabase(middlewares.JwtValidate(routers.CreateTweet))).Methods("POST")
 	router.HandleFunc("/tweet", middlewares.CheckDatabase(middlewares.JwtValidate(routers.DeleteTweet))).Methods("DELETE")
 
+	// Images
+	router.HandleFunc("/avatar", middlewares.CheckDatabase(middlewares.JwtValidate(routers.UploadAvatar))).Methods("POST")
+	router.HandleFunc("/avatar", middlewares.CheckDatabase(routers.GetAvatar)).Methods("GET")
+	router.HandleFunc("/banner", middlewares.CheckDatabase(middlewares.JwtValidate(routers.UploadBanner))).Methods("POST")
+	router.HandleFunc("/banner", middlewares.CheckDatabase(routers.GetBanner)).Methods("GET")
+
 	if PORT == "" {
 		PORT = "1173"
 	}
