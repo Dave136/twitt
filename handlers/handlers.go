@@ -37,6 +37,7 @@ func Handlers() {
 	router.HandleFunc("/relation", middlewares.CheckDatabase(middlewares.JwtValidate(routers.DeleteRelation))).Methods("DELETE")
 
 	router.HandleFunc("/following", middlewares.CheckDatabase(middlewares.JwtValidate(routers.GetUsers))).Methods("GET")
+	router.HandleFunc("/followingTweets", middlewares.CheckDatabase(middlewares.JwtValidate(routers.GetTweetsFollowers))).Methods("GET")
 
 	if PORT == "" {
 		PORT = "1173"
